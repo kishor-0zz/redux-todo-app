@@ -3,18 +3,19 @@ import initialState from "./initialState";
 
 
 
-const nextTodoId = (todo) => {
-   const maxId = todo.reducer((id, todo) => Math.max(id, todo.id), -1)
+const nextTodoId = (adds) => {
+   let maxId = adds.reduce((id, adds) => Math.max(id, adds.id), 0)
    return maxId + 1;
 }
-
 const Reducer = (state = initialState, action) => {
    switch (action.type) {
       case ADDED:
          return [
             ...state,
             {
-               id: nextTodoId(state)
+               id: nextTodoId(state),
+               text: action.payload,
+               complited: false
             }
          ]
       case TOGGLE:
@@ -48,7 +49,8 @@ const Reducer = (state = initialState, action) => {
             }
          })
       case CLEARECOMPLETED:
-         return state.filter(todo = !todo.complited)
+         return state.filter(todo => !todo.complited);
+
       default:
          return state;
    }
