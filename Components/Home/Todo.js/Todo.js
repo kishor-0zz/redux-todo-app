@@ -1,4 +1,5 @@
 import { added, clearecompleted, completed } from '@/pages/Redux/Todo/Action';
+import addTodo from '@/pages/Redux/Todo/Thank/addTodo';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TodoItem from './TodoItem';
@@ -12,7 +13,7 @@ const Todo = ({ todo }) => {
    }
    const handelSubmit = (e) => {
       e.preventDefault();
-      dispatch(added(input))
+      dispatch(addTodo(input))
       setInput(" ")
    }
 
